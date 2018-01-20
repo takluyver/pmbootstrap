@@ -15,11 +15,11 @@ HOSTCC="${CC:-gcc}"
 HOSTCC="${HOSTCC#${CROSS_COMPILE}}"
 
 # Source
-_repository="(CHANGEME!)"
-_commit="ffffffffffffffffffffffffffffffffffffffff"
+_repository="https://github.com/broadcomCM/android_kernel_samsung_bcm21553-common"
+_commit="443d0287846b744295e4586807832ca38a5f3c19"
 _config="config-${_flavor}.${arch}"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/LineageOS/${_repository}/archive/${_commit}.tar.gz
+	$pkgname-$_commit.tar.gz::${_repository}/archive/${_commit}.tar.gz
 	$_config
 	compiler-gcc6.h
 	01_msm-fix-perf_trace_counters.patch
