@@ -1,7 +1,7 @@
 # Kernel config based on: arch/arm/configs/(CHANGEME!)
 
 pkgname="linux-samsung-s5830i"
-pkgver=3.x.x
+pkgver=2.6.35
 pkgrel=0
 pkgdesc="Samsung Galaxy Ace S5830I kernel fork"
 arch="armhf"
