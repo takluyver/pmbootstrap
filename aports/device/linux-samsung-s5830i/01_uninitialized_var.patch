@@ -1,0 +1,76 @@
+Ensure that uninitialized_var is defined for GCC 5.
+
+From c837fb37a60aa642b9ad423462e32b851a03020a Mon Sep 17 00:00:00 2001
+From: Borislav Petkov <borislav.petkov@amd.com>
+Date: Tue, 22 Mar 2011 16:33:55 -0700
+Subject: [PATCH] include/linux/compiler-gcc*.h: unify macro definitions
+
+Unify identical gcc3.x and gcc4.x macros.
+
+Signed-off-by: Borislav Petkov <borislav.petkov@amd.com>
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+---
+ include/linux/compiler-gcc.h  | 8 ++++++++
+ include/linux/compiler-gcc3.h | 8 --------
+ include/linux/compiler-gcc4.h | 8 --------
+ 3 files changed, 8 insertions(+), 16 deletions(-)
+
+diff --git a/include/linux/compiler-gcc.h b/include/linux/compiler-gcc.h
+index 16508bcddaccd..cb4c1eb7778e4 100644
+--- a/include/linux/compiler-gcc.h
++++ b/include/linux/compiler-gcc.h
+@@ -92,3 +92,11 @@
+ #if !defined(__noclone)
+ #define __noclone	/* not needed */
+ #endif
++
++/*
++ * A trick to suppress uninitialized variable warning without generating any
++ * code
++ */
++#define uninitialized_var(x) x = x
++
++#define __always_inline		inline __attribute__((always_inline))
+diff --git a/include/linux/compiler-gcc3.h b/include/linux/compiler-gcc3.h
+index b721129e0469f..37d412436d0fc 100644
+--- a/include/linux/compiler-gcc3.h
++++ b/include/linux/compiler-gcc3.h
+@@ -21,11 +21,3 @@
+ #   error "GCOV profiling support for gcc versions below 3.4 not included"
+ # endif /* __GNUC_MINOR__ */
+ #endif /* CONFIG_GCOV_KERNEL */
+-
+-/*
+- * A trick to suppress uninitialized variable warning without generating any
+- * code
+- */
+-#define uninitialized_var(x) x = x
+-
+-#define __always_inline		inline __attribute__((always_inline))
+diff --git a/include/linux/compiler-gcc4.h b/include/linux/compiler-gcc4.h
+index fcfa5b9a4317a..64b7c003fd7a5 100644
+--- a/include/linux/compiler-gcc4.h
++++ b/include/linux/compiler-gcc4.h
+@@ -12,13 +12,6 @@
+ #define __used			__attribute__((__used__))
+ #define __must_check 		__attribute__((warn_unused_result))
+ #define __compiler_offsetof(a,b) __builtin_offsetof(a,b)
+-#define __always_inline		inline __attribute__((always_inline))
+-
+-/*
+- * A trick to suppress uninitialized variable warning without generating any
+- * code
+- */
+-#define uninitialized_var(x) x = x
+ 
+ #if __GNUC_MINOR__ >= 3
+ /* Mark functions as cold. gcc will assume any path leading to a call
+@@ -53,7 +46,6 @@
+ #define __noclone	__attribute__((__noclone__))
+ 
+ #endif
+-
+ #endif
+ 
+ #if __GNUC_MINOR__ > 0

@@ -23,6 +23,7 @@ source="
 	$_config
 	compiler-gcc6.h
 	00_fix_return_address.patch
+	01_uninitialized_var.patch
 "
 builddir="$srcdir/${_repository}-${_commit}"
 
@@ -79,3 +80,4 @@ sha512sums="94cb9e9ee24bea33b5fb98ce76c0a7c003bb9346afb3b12876b7bd6c83c723d733f0
 fbdf3df844f3fd4b9f18192e0ad3c22fe24282b571089838b7b224ff004c84d658b41ea420bf8093c6e49bfb3afc0acdcb0f3353b09bb3a12b449d04d633dd0a  config-samsung-s5830i.armhf
 d80980e9474c82ba0ef1a6903b434d8bd1b092c40367ba543e72d2c119301c8b2d05265740e4104ca1ac5d15f6c4aa49e8776cb44264a9a28dc551e0d1850dcc  compiler-gcc6.h
 2f482e69a9027de5c21d4aaaf4529737e3514e38fab6b2570b5d207440c4eff5c3ef7583ffc773def07dc11a002a23cfb65656debe5c8ce1ce9c4aaaaaf6aaf0  00_fix_return_address.patch
+f58fee6f488392c4e381e815f14dd993c30b2132adfc33822473055e7c5cf6d8280904af1dd2c1090969ed00b731e38ae0869207ab8ad2f6dbbf604d4b3d3507  01_uninitialized_var.patch
