@@ -13,6 +13,10 @@ Signed-off-by: Behan Webster <behanw@converseincode.com>
 Reviewed-by: Mark Charlebois <charlebm@gmail.com>
 Acked-by: Steven Rostedt <rostedt@goodmis.org>
 Signed-off-by: Russell King <rmk+kernel@arm.linux.org.uk>
+
+TK: removed the last part of this patch (so it no longer removes the NULL
+version in return_address.c). Not sure what I'm doing, but it gets me past an
+undefined symbol error.
 ---
  arch/arm/include/asm/ftrace.h    | 2 +-
  arch/arm/kernel/return_address.c | 5 -----
@@ -31,19 +35,3 @@ index 39eb16b0066f2..bfe2a2f5a644e 100644
  {
  	return NULL;
  }
-diff --git a/arch/arm/kernel/return_address.c b/arch/arm/kernel/return_address.c
-index fafedd86885dd..f6aa84d5b93c9 100644
---- a/arch/arm/kernel/return_address.c
-+++ b/arch/arm/kernel/return_address.c
-@@ -63,11 +63,6 @@ void *return_address(unsigned int level)
- #warning "TODO: return_address should use unwind tables"
- #endif
- 
--void *return_address(unsigned int level)
--{
--	return NULL;
--}
--
- #endif /* if defined(CONFIG_FRAME_POINTER) && !defined(CONFIG_ARM_UNWIND) / else */
- 
- EXPORT_SYMBOL_GPL(return_address);
